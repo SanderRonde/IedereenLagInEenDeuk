@@ -12,12 +12,20 @@ module.exports = function(grunt) {
 			},
 			css: {
 				files: [{
-					'app/client/public/css/main.css': ['app/client/src/css/main.css',
-						'app/client/src/css/online_fonts.css'],
-					'app/client/public/css/main_offline.css': ['app/client/src/css/main.css',
-						'app/client/src/css/offline_fonts.css']
+					'app/client/public/css/main.css': ['app/client/src/css/main.css'],
+					'app/client/public/css/main_offline.css': ['app/client/src/css/main.css']
 				}]
 			}
+		},
+		concat: {
+			css: {
+				files: {
+					'app/client/public/css/main.css': ['app/client/src/css/online_fonts.css',
+						'app/client/public/css/main.css'],
+					'app/client/public/css/main_offline.css': ['app/client/src/css/offline_fonts.css',
+						'app/client/public/css/main.css']
+				}
+			},
 		},
 		uglify: {
 			js: {
@@ -36,7 +44,7 @@ module.exports = function(grunt) {
 		watch: {
 			clientCss: {
 				files: ['app/client/src/css/*.css', 'app/client/src/css/parts/*.css'],
-				tasks: ['cssmin:css'],
+				tasks: ['cssmin:css', 'concat'],
 				options: {
 					spawn: false
 				}
@@ -52,6 +60,7 @@ module.exports = function(grunt) {
 	});
 
 	grunt.loadNpmTasks('grunt-contrib-copy');
+	grunt.loadNpmTasks('grunt-contrib-concat');
 	grunt.loadNpmTasks('grunt-contrib-cssmin');
 	grunt.loadNpmTasks('grunt-contrib-uglify');
 	grunt.loadNpmTasks('grunt-contrib-watch');
@@ -59,7 +68,7 @@ module.exports = function(grunt) {
 	grunt.loadNpmTasks('grunt-exec');
 
 	//Compiles all files and prepares all bundles
-	grunt.registerTask('compile', ['compileTs', 'cssmin:css', 'uglify:js', 'copy:sw']);
+	grunt.registerTask('compile', ['compileTs', 'cssmin:css', 'concat', 'uglify:js', 'copy:sw']);
 
 	//Compiles the typescript for the client and server
 	grunt.registerTask('compileTs', ['compileServer', 'compileClient', 'compileSW']);
