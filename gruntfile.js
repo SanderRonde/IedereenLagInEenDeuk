@@ -12,7 +12,10 @@ module.exports = function(grunt) {
 			},
 			css: {
 				files: [{
-					'app/client/public/css/main.css': 'app/client/src/css/main.css'
+					'app/client/public/css/main.css': ['app/client/src/css/main.css',
+						'app/client/src/css/online_fonts.css'],
+					'app/client/public/css/main_offline.css': ['app/client/src/css/main.css',
+						'app/client/src/css/offline_fonts.css']
 				}]
 			}
 		},

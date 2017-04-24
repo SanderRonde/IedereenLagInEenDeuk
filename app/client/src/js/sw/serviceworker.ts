@@ -9,7 +9,7 @@ toolbox.options.cache.maxEntries = 500;
 toolbox.options.cache.maxAgeSeconds = 60 * 60 * 24 * (365.25 / 12);
 
 const toCache = ['main.css', 'main.js', '/404']
-	.concat('/', '/404')
+	.concat('/', '/404', '/offline')
 	.concat('/fonts/Roboto-Regular.ttf')
 	.concat('/about/manifest.json', '/about/images/48.png',
 		'/about/images/72.png', '/about/images/96.png',

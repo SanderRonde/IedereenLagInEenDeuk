@@ -100,26 +100,26 @@ function logRequest(req: express.Request, res: express.Response, next: express.N
 
 	app.use(logRequest);
 
-	app.get('/', async (req, res) => {
-		const html = await wrapPromise(promisify(app.render, app, 'index', {})).catch((err) => {
-			console.log(`Error while rendering ${'/index'}, ${err.message}, ${err.stack}`);
-			res.writeHead(500);
-		});
-		if (html) {
-			res.setHeader('Content-type', 'text/html');
-			res.end(html);
+	function renderPath(path: string, params: {
+		[key: string]: any;
+	} = {}): express.RequestHandler {
+		return async (req, res) => {
+			const html = await wrapPromise(promisify(app.render, app, path, params)).catch((err) => {
+				console.log(`Error while rendering ${'/index'}, ${err.message}, ${err.stack}`);
+				res.writeHead(500);
+			});
+			if (html) {
+				res.setHeader('Content-type', 'text/html');
+				res.end(html);
+			}
 		}
-	});
-	app.get('/404', async (req, res) => {
-		const html = await wrapPromise(promisify(app.render, app, '404', {})).catch((err) => {
-			console.log(`Error while rendering ${'/404'}, ${err.message}, ${err.stack}`);
-			res.writeHead(500);
-		});
-		if (html) {
-			res.setHeader('Content-type', 'text/html');
-			res.end(html);
-		}
-	});
+	}
+
+	app.get('/', renderPath('index'));
+	app.get('/offline', renderPath('index', {
+		offline: true
+	}));
+	app.get('/404', renderPath('404'));
 
 	app.use(async (req, res, next) => {
 		res.status(404);
