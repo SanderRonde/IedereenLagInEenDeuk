@@ -34,8 +34,5 @@
 		"src": "images/192.png",
 		"sizes": "192x192",
 		"type": "image/png"
-	}, {
-		"src": "images/icon.svg",
-		"sizes": "256x256 512x512"
 	}]
 }
