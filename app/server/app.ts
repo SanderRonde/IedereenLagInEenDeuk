@@ -101,8 +101,8 @@ function logRequest(req: express.Request, res: express.Response, next: express.N
 	app.use(logRequest);
 
 	app.get('/', async (req, res) => {
-		const html = await wrapPromise(promisify(app.render, app, '/', {})).catch((err) => {
-			console.log(`Error while rendering ${'/'}, ${err.message}, ${err.stack}`);
+		const html = await wrapPromise(promisify(app.render, app, 'index', {})).catch((err) => {
+			console.log(`Error while rendering ${'/index'}, ${err.message}, ${err.stack}`);
 			res.writeHead(500);
 		});
 		if (html) {
@@ -111,8 +111,8 @@ function logRequest(req: express.Request, res: express.Response, next: express.N
 		}
 	});
 	app.get('/404', async (req, res) => {
-		const html = await wrapPromise(promisify(app.render, app, '/404', {})).catch((err) => {
-			console.log(`Error while rendering ${'/'}, ${err.message}, ${err.stack}`);
+		const html = await wrapPromise(promisify(app.render, app, '404', {})).catch((err) => {
+			console.log(`Error while rendering ${'/404'}, ${err.message}, ${err.stack}`);
 			res.writeHead(500);
 		});
 		if (html) {
@@ -125,7 +125,7 @@ function logRequest(req: express.Request, res: express.Response, next: express.N
 		res.status(404);
 
 		if (req.accepts('html')) {
-			const html = await wrapPromise(promisify(app.render, app, '/404', {})).catch((err) => {
+			const html = await wrapPromise(promisify(app.render, app, '404', {})).catch((err) => {
 				console.log(`Error while rendering ${'/404'}, ${err.message}, ${err.stack}`);
 				res.writeHead(500);
 			});
