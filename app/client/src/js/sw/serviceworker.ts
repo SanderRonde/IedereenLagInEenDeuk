@@ -8,13 +8,13 @@ toolbox.options.cache.name = 'IedereenLagInEenDeukCache';
 toolbox.options.cache.maxEntries = 500;
 toolbox.options.cache.maxAgeSeconds = 60 * 60 * 24 * (365.25 / 12);
 
-const toCache = ['/js/main.js', '/css/main.css', '/css/main_offline.css']
+const toCache = ['/js/main.js']
 	.concat('/', '/404', '/offline')
 	.concat('/fonts/Roboto-Regular.ttf', '/resources/vid.mp4')
 	.concat('/about/manifest.json', '/about/images/48.png',
 		'/about/images/72.png', '/about/images/96.png',
 		'/about/images/144.png', '/about/images/168.png',
-		'/about/images/192.png', '/about/images/icon.svg')
+		'/about/images/192.png')
 
 function getFromCache(path: string): RequestPromise {
 	return (req, values, options): Promise<Response> => {

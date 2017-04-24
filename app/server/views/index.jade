@@ -8,9 +8,11 @@ html
         link(rel="manifest", href="/about/manifest.json")
         link(rel="icon", href="/favicon.ico", type="images/x-icon")
         if offline == true
-            link(rel="stylesheet", href=getCssString('main_offline'))
+            style
+                include './../../../client/public/css/main.css
         else
-            link(rel="stylesheet", href=getCssString('main'))
+            style
+                include './../../../client/public/css/main_offline.css
 
     body
         div#networkStatus(class='hidden')
