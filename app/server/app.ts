@@ -152,4 +152,4 @@ function logRequest(req: express.Request, res: express.Response, next: express.N
 	app.listen(80, () => {
 		console.log('Listening on port 80');
 	});
-});
+})();
