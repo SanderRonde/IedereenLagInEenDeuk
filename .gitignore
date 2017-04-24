@@ -298,3 +298,5 @@ app/client/public/js
 
 /secrets
 /data/database
+
+certs/
