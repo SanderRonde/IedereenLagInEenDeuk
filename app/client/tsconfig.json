@@ -1,0 +1,23 @@
+{
+	"compilerOptions": {
+		"module": "commonjs",
+		"noImplicitReturns": true,
+		"noImplicitThis": true,
+		"noImplicitAny": true,
+        "alwaysStrict": true,
+		"noUnusedLocals": true,
+        "removeComments": true,
+        "preserveConstEnums": true,
+        "sourceMap": false,
+        "pretty": true,
+        "target": "es3",
+		"lib": ["es2015", "es6", "dom", "es2015.promise"]
+	},
+	"compileOnSave": true,
+	"include": [
+		"./"
+	],
+	"exclude": [
+		"js/sw/"
+	]
+}
