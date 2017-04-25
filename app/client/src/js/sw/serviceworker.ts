@@ -3,7 +3,6 @@ declare function importScripts(name: string): void;
 
 importScripts('/js/libs/sw-toolbox.js');
 
-toolbox.options.debug = true;
 toolbox.options.cache.name = 'IedereenLagInEenDeukCache';
 toolbox.options.cache.maxEntries = 500;
 toolbox.options.cache.maxAgeSeconds = 60 * 60 * 24 * (365.25 / 12);
