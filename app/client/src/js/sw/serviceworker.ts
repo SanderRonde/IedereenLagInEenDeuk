@@ -34,7 +34,6 @@ self.addEventListener('install', async (event) => {
 		toolbox.router.any('/', (req) => {
 			return new Promise((resolve) => {
 				return getFromCache('/cached')(req, {}).then((res) => {
-					console.log('Resolving with', res);
 					resolve(res);
 				});
 			});
