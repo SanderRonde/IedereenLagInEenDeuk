@@ -80,6 +80,25 @@ function logRequest(req: express.Request, res: express.Response, next: express.N
 	next();
 }
 
+const HTTP_PUSH_MAP: {
+	[key: string]: Array<{
+		path: string;
+		as: 'media'|'script'|'style'|'font'|'image'|'worker'|'embed'|
+			'object'|'document';
+	}>;
+} = {
+	'index': [{
+		path: '/resources/vid.mp4',
+		as: 'media'
+	}, {
+		path: '/js/main.js',
+		as: 'script'
+	}, {
+		path: 'https://fonts.googleapis.com/css?family=Roboto:400',
+		as: 'style'
+	}]
+};
+
 (async () => {
 	const app = express();
 
@@ -110,6 +129,11 @@ function logRequest(req: express.Request, res: express.Response, next: express.N
 			});
 			if (html) {
 				res.setHeader('Content-type', 'text/html');
+				if (HTTP_PUSH_MAP[path]) {
+					res.setHeader('Link', HTTP_PUSH_MAP[path].map((resource) => {
+						return `<${resource.path}>; rel=preload; as=${resource.as}`;
+					}).join(','));
+				}
 				res.end(html);
 			}
 		}
