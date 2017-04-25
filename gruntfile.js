@@ -64,7 +64,6 @@ module.exports = function(grunt) {
 	grunt.loadNpmTasks('grunt-contrib-cssmin');
 	grunt.loadNpmTasks('grunt-contrib-uglify');
 	grunt.loadNpmTasks('grunt-contrib-watch');
-	grunt.loadNpmTasks('grunt-string-replace');
 	grunt.loadNpmTasks('grunt-exec');
 
 	//Compiles all files and prepares all bundles
