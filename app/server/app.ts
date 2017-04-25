@@ -116,7 +116,7 @@ function logRequest(req: express.Request, res: express.Response, next: express.N
 	}
 
 	app.get('/', renderPath('index'));
-	app.get('/offline', renderPath('index', {
+	app.get('/cached', renderPath('index', {
 		offline: true
 	}));
 	app.get('/404', renderPath('404'));
