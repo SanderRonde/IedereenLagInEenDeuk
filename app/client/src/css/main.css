@@ -27,26 +27,6 @@ body {
 	display: none;
 }
 
-.fancyButton {
-	background-color: #007eff;
-	color: white;
-	-webkit-appearance: initial;
-	padding: 4px 10px;
-	font-family: 'Roboto';
-	text-transform: uppercase;
-	border: none;
-	cursor: pointer;
-	box-shadow: 1px 1px 8px 0px black;
-	transition: box-shadow 80ms ease-in, transform 80ms ease-in;
-	outline: none;
-	font-size: 100%;
-}
-
-.fancyButton:active {
-	box-shadow: 0px 0px 5px 0px black;
-	transform: translateX(1px) translateY(1px);
-}
-
 a {
 	position: relative;
 	text-decoration: underline;
