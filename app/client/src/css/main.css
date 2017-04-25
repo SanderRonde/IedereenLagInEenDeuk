@@ -75,24 +75,19 @@ a:focus::before {
 	text-align: center;
 }
 
-#replayButton {
-	margin: 10px;
-	font-size: 6vw;
-}
-
 @media (min-width: 600px) {
 	.title {
 		font-size: 250%;
-	}
-
-	#replayButton {
-		font-size: 200%;
 	}
 }
 
 #video {
 	width: 90vw;
 	max-height: 80vh;
+}
+
+#video.ended {
+	cursor: pointer;
 }
 
 .footer {
@@ -120,4 +115,25 @@ a:focus::before {
 		position: relative;
 		bottom: 0;
 	}
+}
+
+.replayVideoContainer {
+	opacity: 0;
+	position: absolute;	
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	background-color: rgba(0, 0, 0, 0.35);
+	transition: opacity 250ms ease-in;
+	pointer-events: none;
+}
+
+.replayVideoContainer.visible {
+	opacity: 1;
+}
+
+#replayVideo {
+	fill: white;
+	width: 15vmin;
+	height: 15vmin;
 }
