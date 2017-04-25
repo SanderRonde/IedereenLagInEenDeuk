@@ -103,10 +103,9 @@ const HTTP_PUSH_MAP: {
 			if (html) {
 				res.setHeader('Content-type', 'text/html');
 				if (HTTP_PUSH_MAP[path]) {
-					res.setHeader('Link', `</resources/vid.mp4>; rel=preload; as=media`);
-					// res.setHeader('Link', HTTP_PUSH_MAP[path].map((resource) => {
-					// 	return `<${resource.path}>; rel=preload; as=${resource.as}`;
-					// }).join(','));
+					HTTP_PUSH_MAP[path].forEach((resource) => {
+						res.setHeader('Link', `<${resource.path}>; rel=preload; as=${resource.as}`);
+					});
 				}
 				res.end(html);
 			}
