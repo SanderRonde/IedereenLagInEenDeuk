@@ -39,6 +39,18 @@ const certs = {
 	rejectUnauthorized: false
 };
 
+const ARGS: {
+	[key: string]: string;
+} = {};
+process.argv.forEach((val, index) => {
+	ARGS[val.split('=')[0]] = val.split('=')[1];
+});
+
+const PORT_DATA = {
+	HTTP: ARGS['http'] || 80,
+	HTTPS: ARGS['https'] || 443
+};
+
 function wrapPromise<T>(promise: Promise<T>): {
 	catch(handler: (err: any) => void|PromiseLike<void>): Promise<T>;
 } {
@@ -170,10 +182,10 @@ const HTTP_PUSH_MAP: {
 		res.type('txt').send('Not Found');
 	});
 
-	https.createServer(certs, app).listen(443, () => {
-		console.log(`HTTPS server listening on port 443`);
+	https.createServer(certs, app).listen(PORT_DATA.HTTPS, () => {
+		console.log(`HTTPS server listening on port ${PORT_DATA.HTTPS}`);
 	});
-	app.listen(80, () => {
-		console.log('Listening on port 80');
+	app.listen(PORT_DATA.HTTP, () => {
+		console.log(`Listening on port ${PORT_DATA.HTTP}`);
 	});
 })();
