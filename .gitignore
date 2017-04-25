@@ -293,8 +293,6 @@ js/server/database.js
 !**/**/libs/*.js
 
 app/client/public/css
-app/client/public/js
-!app/client/public/js/libs
 
 /secrets
 /data/database
