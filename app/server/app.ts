@@ -94,7 +94,7 @@ function logRequest(req: express.Request, res: express.Response, next: express.N
 		path.join(
 			__dirname, '../client/public'
 		), {
-			maxAge: 5 //TODO change
+			maxAge: 1000 * 60 * 60 * 24 * 365
 		}
 	));
 
