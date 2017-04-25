@@ -8,7 +8,7 @@
 	"orientation": "portrait-primary",
 	"display": "standalone",
 	"background_color": "#58a9e2",
-	"theme_color": "#d50000",
+	"theme_color": "#007eff",
 	"description": "Iedereen lag in een deuk",
 	"icons": [{
 		"src": "images/48.png",
