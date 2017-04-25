@@ -11,6 +11,9 @@ window.addEventListener('online', () => {
 window.addEventListener('offline', () => {
 	offlineIndicator.classList.remove('hidden');
 });
+if (!navigator.onLine) {
+	offlineIndicator.classList.remove('hidden');
+}
 const vid = (document.getElementById('video') as HTMLVideoElement);
 document.getElementById('replayButton').addEventListener('click', () => {
 	vid.pause();
