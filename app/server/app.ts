@@ -2,11 +2,10 @@
 
 import express = require('express');
 import https = require('https');
-import http2 = require('http2');
 import path = require('path');
 import fs = require('fs');
-const favicon = require('serve-favicon');
-const compression = require('compression');
+const favicon: (path: string) => express.RequestHandler = require('serve-favicon');
+const compression: (options?: any) => express.RequestHandler = require('compression');
 
 const certs = {
 	key: fs.readFileSync('./certs/key.pem'),
@@ -24,8 +23,8 @@ process.argv.forEach((val, index) => {
 });
 
 const PORT_DATA = {
-	HTTP: ARGS['http'] || 80,
-	HTTPS: ARGS['https'] || 443
+	HTTP: ARGS['--http'] || 80,
+	HTTPS: ARGS['--https'] || 443
 };
 
 function wrapPromise<T>(promise: Promise<T>): {
@@ -146,7 +145,7 @@ const HTTP_PUSH_MAP: {
 	https.createServer(certs, app).listen(PORT_DATA.HTTPS, () => {
 		console.log(`HTTPS server listening on port ${PORT_DATA.HTTPS}`);
 	});
-	http2.createServer(certs, app).listen(PORT_DATA.HTTP, () => {
+	app.listen(PORT_DATA.HTTP, () => {
 		console.log(`HTTP server listening on port ${PORT_DATA.HTTP}`);
 	});
 })();
