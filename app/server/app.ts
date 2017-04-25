@@ -2,34 +2,11 @@
 
 import express = require('express');
 import https = require('https');
+import http2 = require('http2');
 import path = require('path');
-//import http = require('http');
 import fs = require('fs');
-
-
-//const http2 = require('http2');
-
 const favicon = require('serve-favicon');
 const compression = require('compression');
-
-// const LEX = require('letsencrypt-express').create({
-// 	server: 'https://acme-v01.api.letsencrypt.org/directory',
-// 	email: 'awsdfgvhbjn@gmail.com',
-// 	agreeTos: true,
-// 	approveDomains: ['deuropen.com', 'www.deuropen.com', 'localhost'],
-// 	challenges: {
-// 		'http-01': require('le-challenge-fs').create({
-// 			webrootPath: './tmp/acme-challenges'
-// 		})
-// 	},
-// 	store: require('le-store-certbot').create({
-// 		webrootPath: './tmp/acme-challenges'
-// 	})
-// });
-
-// http.createServer(LEX.middleware(require('redirect-https')())).listen(80, function(this: http.Server) {
-// 	console.log('Listening for ACME challenges on', this.address());
-// })
 
 const certs = {
 	key: fs.readFileSync('./certs/key.pem'),
@@ -80,18 +57,6 @@ function promisify<T>(fn: Function, context: any, ...args: Array<any>): Promise<
 	});
 }
 
-function logRequest(req: express.Request, res: express.Response, next: express.NextFunction) {
-	const originalEnd = res.end;
-	res.end = (chunk?: any, encoding?: any) => {
-		console.log('[request]', 
-			`Request for url ${req.url} from ip ${
-				req.connection.remoteAddress
-			} ended with status code ${res.statusCode}`);
-		originalEnd.call(res, chunk, encoding);
-	}
-	next();
-}
-
 const HTTP_PUSH_MAP: {
 	[key: string]: Array<{
 		path: string;
@@ -129,14 +94,11 @@ const HTTP_PUSH_MAP: {
 		}
 	));
 
-	app.use(logRequest);
-
 	function renderPath(path: string, params: {
 		[key: string]: any;
 	} = {}): express.RequestHandler {
 		return async (req, res) => {
 			const html = await wrapPromise(promisify(app.render, app, path, params)).catch((err) => {
-				console.log(`Error while rendering ${'/index'}, ${err.message}, ${err.stack}`);
 				res.writeHead(500);
 			});
 			if (html) {
@@ -162,7 +124,6 @@ const HTTP_PUSH_MAP: {
 
 		if (req.accepts('html')) {
 			const html = await wrapPromise(promisify(app.render, app, '404', {})).catch((err) => {
-				console.log(`Error while rendering ${'/404'}, ${err.message}, ${err.stack}`);
 				res.writeHead(500);
 			});
 			if (html) {
@@ -185,7 +146,7 @@ const HTTP_PUSH_MAP: {
 	https.createServer(certs, app).listen(PORT_DATA.HTTPS, () => {
 		console.log(`HTTPS server listening on port ${PORT_DATA.HTTPS}`);
 	});
-	app.listen(PORT_DATA.HTTP, () => {
-		console.log(`Listening on port ${PORT_DATA.HTTP}`);
+	http2.createServer(certs, app).listen(PORT_DATA.HTTP, () => {
+		console.log(`HTTP server listening on port ${PORT_DATA.HTTP}`);
 	});
 })();
