@@ -73,6 +73,10 @@ a:focus::before {
 .title {
 	font-size: 6.5vw;
 	text-align: center;
+	-webkit-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
 }
 
 @media (min-width: 600px) {
@@ -84,10 +88,6 @@ a:focus::before {
 #video {
 	width: 90vw;
 	max-height: 80vh;
-}
-
-#video.ended {
-	cursor: pointer;
 }
 
 .footer {
@@ -126,10 +126,13 @@ a:focus::before {
 	background-color: rgba(0, 0, 0, 0.35);
 	transition: opacity 250ms ease-in;
 	pointer-events: none;
+	z-index: 10;
 }
 
 .replayVideoContainer.visible {
+	pointer-events: all;
 	opacity: 1;
+	cursor: pointer;
 }
 
 #replayVideo {

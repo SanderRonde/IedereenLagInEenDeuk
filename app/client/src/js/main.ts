@@ -31,7 +31,7 @@ vid.addEventListener('ended', () => {
 	vid.classList.add('ended');
 	replayEl.classList.add('visible');
 });
-document.getElementById('video').addEventListener('click', () => {
+document.getElementsByClassName('replayVideoContainer')[0].addEventListener('click', () => {
 	vid.pause();
 	vid.currentTime = 0;
 	vid.play();
