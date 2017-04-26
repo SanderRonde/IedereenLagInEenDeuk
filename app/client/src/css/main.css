@@ -132,3 +132,7 @@ a:focus::before {
 .replayVideoContainer.autoplayDisabled #replayVideo {
 	display: none;
 }
+
+.replayVideoContainer.visible:focus {
+	outline: 1px solid orange;
+}

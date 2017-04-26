@@ -14,24 +14,19 @@ window.addEventListener('offline', () => {
 if (!navigator.onLine) {
 	offlineIndicator.classList.remove('hidden');
 }
+
+
 const vid = (document.getElementById('video') as HTMLVideoElement);
 const replayEl = document.getElementsByClassName('replayVideoContainer')[0] as HTMLElement;
+
+
 function calcReplayElSize() {
 	const bcr = vid.getBoundingClientRect();
 	replayEl.style.height = bcr.height + 'px';
 	replayEl.style.width = (bcr.height * (16 / 9)) + 'px';
 }
-window.onresize = () => {
-	if (vid.classList.contains('ended')) {
-		calcReplayElSize();
-	}
-}
-vid.addEventListener('ended', () => {
-	calcReplayElSize();
-	vid.classList.add('ended');
-	replayEl.classList.add('visible');
-});
-replayEl.addEventListener('click', () => {
+
+function onVidPlay() {
 	if (replayEl.classList.contains('autoplayDisabled')) {
 		window.setTimeout(() => {
 			replayEl.classList.remove('autoplayDisabled');
@@ -44,7 +39,31 @@ replayEl.addEventListener('click', () => {
 
 	vid.classList.remove('ended');
 	replayEl.classList.remove('visible');
+}
+
+window.onresize = () => {
+	if (vid.classList.contains('ended')) {
+		calcReplayElSize();
+	}
+}
+
+vid.addEventListener('ended', () => {
+	calcReplayElSize();
+	vid.classList.add('ended');
+	replayEl.classList.add('visible');
 });
+
+replayEl.addEventListener('click', () => {
+	onVidPlay();
+});
+replayEl.addEventListener('keydown', (e) => {
+	if ((e.which || e.keyCode) === 32 || //Spacebar
+		(e.which || e.keyCode) === 13) { //Enter
+			onVidPlay();
+		}
+});
+
+
 vid.onloadeddata = () => {
 	const vidPlayResult = vid.play();
 	if (vidPlayResult) {
