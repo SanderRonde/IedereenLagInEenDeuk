@@ -31,7 +31,13 @@ vid.addEventListener('ended', () => {
 	vid.classList.add('ended');
 	replayEl.classList.add('visible');
 });
-document.getElementsByClassName('replayVideoContainer')[0].addEventListener('click', () => {
+replayEl.addEventListener('click', () => {
+	if (replayEl.classList.contains('autoplayDisabled')) {
+		window.setTimeout(() => {
+			replayEl.classList.remove('autoplayDisabled');
+		}, 250);
+	}
+
 	vid.pause();
 	vid.currentTime = 0;
 	vid.play();
@@ -39,3 +45,14 @@ document.getElementsByClassName('replayVideoContainer')[0].addEventListener('cli
 	vid.classList.remove('ended');
 	replayEl.classList.remove('visible');
 });
+vid.onloadeddata = () => {
+	const vidPlayResult = vid.play();
+	if (vidPlayResult) {
+		((vidPlayResult as any) as Promise<any>).catch((err) => {
+			//If this thrown an error, autoplay is disabled
+			calcReplayElSize();
+			replayEl.classList.add('autoplayDisabled', 'visible');
+			vid.classList.add('ended');
+		});
+	}
+}

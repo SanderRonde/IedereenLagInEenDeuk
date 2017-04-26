@@ -115,8 +115,20 @@ a:focus::before {
 	cursor: pointer;
 }
 
-#replayVideo {
+#replayVideo, #playVideo {
 	fill: white;
 	width: 15vmin;
 	height: 15vmin;
+}
+
+.replayVideoContainer #playVideo {
+	display: none;
+}
+
+.replayVideoContainer.autoplayDisabled #playVideo {
+	display: block;
+}
+
+.replayVideoContainer.autoplayDisabled #replayVideo {
+	display: none;
 }
