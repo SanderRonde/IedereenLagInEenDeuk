@@ -28,12 +28,36 @@ function getFromCache(path: string): RequestPromise {
 }
 toolbox.precache(toCache);
 
+type SWMessage<Type extends string, Data> = {
+	type: Type;
+	data: Data;
+}
+
+function sendMessageToPage<T extends string, D>(message: SWMessage<T, D>) {
+	(clients.matchAll({
+		includeUncontrolled: true,
+		type: 'window'
+	})).then((foundClients) => {
+		foundClients.forEach((client) => {
+			client.postMessage(message);
+		});
+	});
+}
+
 self.addEventListener('install', async (event) => {
 	event.waitUntil(new Promise(async (resolve) => {
 		
 		toolbox.router.any('/', (req) => {
 			return new Promise((resolve) => {
-				return getFromCache(navigator.onLine ? '/' : '/cached')(req, {}).then((res) => {
+				return getFromCache(navigator.onLine ? '/' : '/cached')(req, {}).then(async (res) => {
+					if (!navigator.onLine) {
+						setTimeout(() => {
+							sendMessageToPage({
+								type: 'offlineServe',
+								data: null
+							});
+						}, 5000);
+					}
 					resolve(res);
 				});
 			});

@@ -1,12 +1,12 @@
 /// <reference path="../../../../typings/client.d.ts" />
 
 const toasts: Array<Toast> = [];
-export class Toast {
+class Toast {
 	element: HTMLElement;
 
 	constructor(public text: string, public duration: number, buttons: Array<{
 		text: string;
-		callback(): void;
+		callback(toast: Toast): void;
 	}> = []) {
 		this.element = this.createElement(buttons);
 		this.showWhenReady();
@@ -23,18 +23,17 @@ export class Toast {
 
 	hide() {
 		this.element.classList.add('hidden');
+
 		window.setTimeout(() => {
-			this.destroy();
+			toasts.splice(toasts.indexOf(this), 1);
+			if (toasts[0]) {
+				toasts[0].show();
+			}
+		}, 500);
+
+		window.setTimeout(() => {
+			this.element.remove();
 		}, 1000);
-	}
-
-	private destroy() {
-		this.element.remove();
-
-		toasts.splice(toasts.indexOf(this), 1);
-		if (toasts[0]) {
-			toasts[0].show();
-		}
 	}
 
 	show() {
@@ -44,18 +43,20 @@ export class Toast {
 		}, this.duration);
 	}
 
-	private createButton(text: string, onclick: () => void): HTMLElement {
+	private createButton(text: string, onclick: (toast: Toast) => void): HTMLElement {
 		const elButton = document.createElement('span');
-		elButton.classList.add('toastDismiss');
+		elButton.classList.add('toastButton');
 		elButton.classList.add('fancyOnClick');
-		elButton.addEventListener('click', onclick);
+		elButton.addEventListener('click', () => {
+			onclick(this);
+		});
 		elButton.innerText = text;
 		return elButton;
 	}
 
 	private createElement(buttons: Array<{
 		text: string;
-		callback(): void;
+		callback(toast: Toast): void;
 	}>): HTMLElement {
 		const el = document.createElement('div');
 		el.classList.add('toast','hidden');
@@ -69,7 +70,6 @@ export class Toast {
 		buttons.forEach((button) => {
 			el.appendChild(this.createButton(button.text, button.callback));
 		});
-		el.appendChild(this.createButton('WEGDOEN', this.hide.bind(this)));
 
 		document.body.appendChild(el);
 
@@ -77,8 +77,57 @@ export class Toast {
 	}
 }
 
-if (navigator.onLine && location.protocol === 'https:') {
-	navigator.serviceWorker.register('/serviceworker.js');
+if ('serviceWorker' in navigator) {
+	(async () => {
+		if (navigator.onLine && (location.protocol === 'https:' || location.host === 'localhost')) {
+			const registration = await navigator.serviceWorker.register('/serviceworker.js');
+
+			registration.addEventListener('updatefound', () => {
+				const newWorker = registration.installing;
+				registration.installing.addEventListener('statechange', async () => {
+					if (newWorker.state == 'activated' && !navigator.serviceWorker.controller) {
+						new Toast('Pagina werkt nu offline', 5000, [{
+							text: 'Echt?',
+							callback(toast) {
+								new Toast('Ja echt', 5000, [{
+									text: 'Dat kan toch niet',
+									callback(toast) {
+										new Toast('Toch wel, probeer dan', 5000, [{
+											text: 'Oke',
+											callback(toast) {
+												localStorage.setItem('msgOnOfflineServe', 'true');
+												toast.hide();
+											}
+										}]);
+										toast.hide();
+									}
+								}]);
+								toast.hide();
+							}
+						}, {
+							text: 'Cool',
+							callback(toast) {
+								toast.hide();
+							}
+						}]);		
+					}
+				});
+			});
+		}
+
+		navigator.serviceWorker.addEventListener('message', (event) => {
+			const msg: {
+				type: string;
+				data: any;
+			} = event.data;
+			if (msg.type === 'offlineServe') {
+				if (localStorage.getItem('msgOnOfflineServe')) {
+					new Toast('Ik zei het toch joh', 2500);
+					localStorage.removeItem('msgOnOfflineServe');
+				}
+			}
+		});
+	})();
 }
 
 const offlineIndicator = document.getElementById('networkStatus');
