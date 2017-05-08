@@ -158,3 +158,32 @@ a:focus:before {
 	width: 100vw;
 	left: 0;
 }
+
+.toast {
+	position: fixed;
+	bottom: 12px;
+	left: 12px;
+	background-color: #424242;
+	padding: 16px 24px 12px;
+	font-size: 14px;
+	color: white;
+	border-radius: 2px;
+	transition: transform 250ms linear;
+	z-index: 10000000;
+	box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.26);
+}
+
+.toast.hidden {
+	transform: translateY(100px);
+}
+
+.toastText {
+	display: inline-block;
+}
+
+.toastDismiss {
+	color: rgb(238, 255, 65);
+	cursor: pointer;
+	margin: 10px;
+	margin-right: 0;
+}
