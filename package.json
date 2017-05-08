@@ -1,6 +1,6 @@
 {
   "name": "iedereen_lag_in_een_deuk",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "main": "app/manifest.json",
   "repository": {
     "type": "git",

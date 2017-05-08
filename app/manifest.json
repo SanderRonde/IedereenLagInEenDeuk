@@ -3,7 +3,7 @@
 
 	"name": "Iedereen lag in een deuk",
 	"description": "Opent het \"iedereen lag in een deuk\" mevrouwtje als je op de knop drukt.",
-	"version": "1.0.0",
+	"version": "1.0.1",
 	"minimum_chrome_version": "26",
 
 	"content_security_policy": "script-src 'self' 'unsafe-eval'; object-src 'self';",
