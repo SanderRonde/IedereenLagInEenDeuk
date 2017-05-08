@@ -6,10 +6,7 @@
     "type": "git",
     "url": "git+https://github.com/SanderRonde/IedereenLagInEenDeuk.git"
   },
-  "keywords": [
-    "deur",
-    "open"
-  ],
+  "keywords": [],
   "author": "Sander Ronde <awsdfgvhbjn@gmail.com>",
   "license": "MIT",
   "bugs": {
