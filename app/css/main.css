@@ -1,0 +1,40 @@
+body {
+	margin: 0;
+	padding: 0;
+	background-color: #58a9e2;
+}
+
+#video {
+	width: 800px;
+	top: 2px;
+	position: relative;
+}
+
+#replayVideoContainer {
+	position: absolute;
+	z-index: 1000;
+	width: 800px;
+	display: flex;
+	justify-content: center;
+	flex-direction: row;
+	height: 100vh;
+	background-color: rgba(0, 0, 0, 0.29);
+	opacity: 0;
+	transition: opacity 250ms ease-in;
+}
+
+#replayVideoContainer.visible {
+	opacity: 1;
+	cursor: pointer;
+}
+
+#replayVideoVerticalCenterer {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+}
+
+#replayVideo {
+	height: 300px;
+	fill: white;	
+}

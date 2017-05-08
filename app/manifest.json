@@ -1,0 +1,33 @@
+{
+	"manifest_version": 2,
+
+	"name": "Iedereen lag in een deuk",
+	"description": "Opent het \"iedereen lag in een deuk\" mevrouwtje als je op de knop drukt.",
+	"version": "1.0.0",
+	"minimum_chrome_version": "26",
+
+	"content_security_policy": "script-src 'self' 'unsafe-eval'; object-src 'self';",
+
+	"browser_action": {
+		"default_icon": {
+			"16": "resources/16.png",
+			"48": "resources/48.png",
+			"72": "resources/72.png",
+			"96": "resources/96.png",
+			"128": "resources/128.png",
+			"144": "resources/144.png",
+			"168": "resources/168.png",
+			"192": "resources/192.png"
+		},
+		"default_title": "Iedereen lag in een deuk",
+		"default_popup": "html/popup.html"
+	},
+
+	"incognito": "spanning",
+
+	"icons": {
+		"16": "resources/16.png",
+		"48": "resources/48.png",
+		"128": "resources/128.png"
+	}
+}
