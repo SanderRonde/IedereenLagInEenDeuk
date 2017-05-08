@@ -136,3 +136,7 @@ a:focus::before {
 .replayVideoContainer.visible:focus {
 	outline: 1px solid orange;
 }
+
+.replayVideoCenterer {
+	position: absolute;
+}
