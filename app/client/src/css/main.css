@@ -163,14 +163,14 @@ a:focus:before {
 	position: fixed;
 	bottom: 12px;
 	left: 12px;
-	background-color: #424242;
-	padding: 16px 24px 12px;
 	font-size: 14px;
-	color: white;
 	border-radius: 2px;
 	transition: transform 250ms linear;
 	z-index: 10000000;
 	box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.26);
+	color: #fff;
+	background: #323232;
+	padding: 14px 29px;
 }
 
 .toast.hidden {
@@ -181,9 +181,10 @@ a:focus:before {
 	display: inline-block;
 }
 
-.toastDismiss {
+.toastButton {
 	color: rgb(238, 255, 65);
 	cursor: pointer;
 	margin: 10px;
 	margin-right: 0;
+	text-transform: uppercase;
 }
