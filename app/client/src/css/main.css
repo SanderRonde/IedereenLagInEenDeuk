@@ -105,7 +105,6 @@ a:focus:before {
 .replayVideoContainer {
 	opacity: 0;
 	-ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
-	position: absolute;	
 	display: -webkit-box;	
 	display: -ms-flexbox;	
 	display: flex;
@@ -156,4 +155,6 @@ a:focus:before {
 
 .replayVideoCenterer {
 	position: absolute;
+	width: 100vw;
+	left: 0;
 }
