@@ -46,8 +46,6 @@ interface ServiceWorkerRegistrationOptions {
 	scope?: string;
 }
 
-type ServiceWorkerState = "installing" | "installed" | "activating" | "activated" | "redundant";
-
 // CacheStorage API
 
 interface Cache {
