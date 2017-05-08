@@ -79,25 +79,26 @@ interface Client {
 	frameType: ClientFrameType;
 	id: string;
 	url: string;
+	postMessage(message: any): void;
+}
+
+interface WindowClient extends Client {
+	focused: boolean;
+	visibilityState: WindowClientState;
+	focus(): Promise<WindowClient>;
+	navigate(url: string): Promise<WindowClient>;
 }
 
 interface Clients {
 	claim(): Promise<any>;
 	get(id: string): Promise<Client>;
-	matchAll(options?: ClientMatchOptions): Promise<Array<Client>>;
+	matchAll(options?: ClientMatchOptions): Promise<Array<WindowClient>>;
 	openWindow(url: string): Promise<WindowClient>;
 }
 
 interface ClientMatchOptions {
 	includeUncontrolled?: boolean;
 	type?: ClientMatchTypes;
-}
-
-interface WindowClient {
-	focused: boolean;
-	visibilityState: WindowClientState;
-	focus(): Promise<WindowClient>;
-	navigate(url: string): Promise<WindowClient>;
 }
 
 type ClientFrameType = "auxiliary" | "top-level" | "nested" | "none";
