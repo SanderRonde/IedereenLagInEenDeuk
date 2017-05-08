@@ -33,7 +33,7 @@ self.addEventListener('install', async (event) => {
 		
 		toolbox.router.any('/', (req) => {
 			return new Promise((resolve) => {
-				return getFromCache('/cached')(req, {}).then((res) => {
+				return getFromCache(navigator.onLine ? '/' : '/cached')(req, {}).then((res) => {
 					resolve(res);
 				});
 			});
