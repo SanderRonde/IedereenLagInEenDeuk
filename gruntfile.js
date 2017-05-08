@@ -39,8 +39,8 @@ module.exports = function(grunt) {
 	grunt.registerTask('build', ['exec:tsCompile', 'uglify:js', 'copy:build']);
 
 	//Zips /build up
-	grunt.registerTask('zip', ['zip']);
+	grunt.registerTask('zipExtension', ['zip']);
 
 	//Builds the project and copies it to /build
-	grunt.registerTask('buildZip', ['build', 'zip']);
+	grunt.registerTask('buildZip', ['build', 'zipExtension']);
 }
