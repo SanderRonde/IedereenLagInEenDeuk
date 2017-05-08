@@ -32,6 +32,12 @@ body {
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
+	outline: none;
+}
+
+#replayVideoVerticalCenterer:focus #replayVideo {
+	border-radius: 50%;
+	border: 2px solid #587caa;
 }
 
 #replayVideo {
