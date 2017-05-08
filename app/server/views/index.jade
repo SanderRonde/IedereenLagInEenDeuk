@@ -1,5 +1,5 @@
-html(lang="nl")
-    head
+html(lang="nl", prefix="og: http://ogp.me/ns#")
+    head(prefix="ns: http://ogp.me/ns#")
         title
             = "Iedereen lag in een deuk"
         meta(charset="utf-8")
@@ -14,6 +14,24 @@ html(lang="nl")
         meta(name="viewport", content="width=device-width, initial-scale=1, maximum-scale=1")
         link(rel="manifest", href="/about/manifest.json")
         link(rel="icon", href="/favicon.ico", type="images/x-icon")
+
+        meta(property="og:title", content="Iedereen lag in een deuk")
+        meta(property="og:image", content="https://www.iedereenlagineendeuk.nl/about/images/192.png")
+        meta(property="og:image:secure", content="https://www.iedereenlagineendeuk.nl/about/images/192.png")
+        meta(property="og:image:type", content="image/png")
+        meta(property="og:image:width", content="128")
+        meta(property="og:image:height", content="128")
+        meta(property="og:url", content="https://www.iedereenlagineendeuk.nl")
+        meta(property="og:locale", content="nl-NL")
+        meta(property="og:locale:alternate", content="nl-BE")
+        meta(property="og:type", content="video.other")
+        meta(property="og:video", content="https://www.iedereenlagineendeuk.nl/resources/vid.mp4")
+        meta(property="og:video:secure", content="https://www.iedereenlagineendeuk.nl/resources/vid.mp4")
+        meta(property="og:video:type", content="video/mp4")
+        meta(property="og:video:width", content="1280")
+        meta(property="og:video:height", content="720")
+        meta(property="og:video:duration", content="1")
+
         if offline == true
             style
                 include './../../../client/public/css/main_cached.css
