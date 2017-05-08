@@ -7,11 +7,16 @@ body {
 }
 
 .horizontallyCentered {
-	display: -webkit-flex;
+	display: -webkit-box;
+	display: -ms-flexbox;
 	display: flex;
-	flex-direction: row;
-	-webkit-justify-content: center;
-	justify-content: center;
+	-webkit-box-orient: horizontal;
+	-webkit-box-direction: normal;
+	    -ms-flex-direction: row;
+	        flex-direction: row;
+	-webkit-box-pack: center;
+	    -ms-flex-pack: center;
+	        justify-content: center;
 }
 
 #networkStatus {
@@ -37,7 +42,7 @@ a:focus {
 	outline: none;
 }
 
-a:focus::before {
+a:focus:before {
 	background-color: rgba(0,0,0,.1);
 	border-radius: 2px;
 	bottom: -4px;
@@ -99,11 +104,20 @@ a:focus::before {
 
 .replayVideoContainer {
 	opacity: 0;
+	-ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
 	position: absolute;	
+	display: -webkit-box;	
+	display: -ms-flexbox;	
 	display: flex;
-	flex-direction: column;
-	justify-content: center;
+	-webkit-box-orient: vertical;
+	-webkit-box-direction: normal;
+	    -ms-flex-direction: column;
+	        flex-direction: column;
+	-webkit-box-pack: center;
+	    -ms-flex-pack: center;
+	        justify-content: center;
 	background-color: rgba(0, 0, 0, 0.35);
+	-webkit-transition: opacity 250ms ease-in;
 	transition: opacity 250ms ease-in;
 	pointer-events: none;
 	z-index: 10;
@@ -112,12 +126,15 @@ a:focus::before {
 .replayVideoContainer.visible {
 	pointer-events: all;
 	opacity: 1;
+	-ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=100)";
 	cursor: pointer;
 }
 
 #replayVideo, #playVideo {
 	fill: white;
+	width: 15vm;
 	width: 15vmin;
+	height: 15vm;
 	height: 15vmin;
 }
 
