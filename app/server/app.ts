@@ -82,6 +82,15 @@ const HTTP_PUSH_MAP: {
 	app.set('views', path.join(__dirname, 'views/'));
 	app.set('view engine', 'jade');
 
+	app.use((req, res, next) => {
+		const originalEnd = res.end;
+		res.end = (...args: Array<any>) => {
+			console.log('[request]', `Request for url ${req.url} from ip ${
+				req.connection.remoteAddress
+			} ended with status code ${res.statusCode}`);
+			originalEnd.apply(res, args);
+		}
+	});
 	app.use(favicon(path.join(__dirname, '../client/public/favicon.ico')));
 	app.use(compression());
 	//app.use('/', le.middleware());
