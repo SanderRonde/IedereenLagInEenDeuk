@@ -90,6 +90,7 @@ const HTTP_PUSH_MAP: {
 			} ended with status code ${res.statusCode}`);
 			originalEnd.apply(res, args);
 		}
+		next();
 	});
 	app.use(favicon(path.join(__dirname, '../client/public/favicon.ico')));
 	app.use(compression());
