@@ -36,6 +36,12 @@
     "letsencrypt-express": "^2.0.6",
     "redbird": "^0.6.15",
     "serve-favicon": "^2.4.1",
-    "typescript": "^2.2.1"
-  }
+    "typescript": "^2.2.1",
+    "snyk": "^1.83.0"
+  },
+  "scripts": {
+    "snyk-protect": "snyk protect",
+    "prepublish": "npm run snyk-protect"
+  },
+  "snyk": true
 }
