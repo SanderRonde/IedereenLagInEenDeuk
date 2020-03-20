@@ -1,5 +1,5 @@
 # Snyk (https://snyk.io) policy file, patches or ignores known vulnerabilities.
-version: v1.12.0
+version: v1.14.1
 ignore: {}
 # patches apply the minimum changes required to fix a vulnerability
 patch:
@@ -12,6 +12,48 @@ patch:
         patched: '2018-06-21T01:19:13.825Z'
     - redbird > node-etcd > request > hawk > cryptiles > boom > hoek:
         patched: '2018-06-21T01:19:13.825Z'
+    - redbird > dolphin > request > hawk > hoek:
+        patched: '2020-03-20T03:30:45.158Z'
+    - redbird > dolphin > request > hawk > boom > hoek:
+        patched: '2020-03-20T03:30:45.158Z'
+    - redbird > dolphin > request > hawk > sntp > hoek:
+        patched: '2020-03-20T03:30:45.158Z'
+    - letsencrypt-express > letsencrypt > le-acme-core > request > hawk > hoek:
+        patched: '2020-03-20T03:30:45.158Z'
+    - redbird > letsencrypt > le-acme-core > request > hawk > hoek:
+        patched: '2020-03-20T03:30:45.158Z'
+    - letsencrypt-express > letsencrypt > le-acme-core > request > hawk > boom > hoek:
+        patched: '2020-03-20T03:30:45.158Z'
+    - redbird > letsencrypt > le-acme-core > request > hawk > boom > hoek:
+        patched: '2020-03-20T03:30:45.158Z'
+    - redbird > dolphin > request > hawk > cryptiles > boom > hoek:
+        patched: '2020-03-20T03:30:45.158Z'
+    - letsencrypt-express > letsencrypt > le-acme-core > request > hawk > sntp > hoek:
+        patched: '2020-03-20T03:30:45.158Z'
+    - redbird > letsencrypt > le-acme-core > request > hawk > sntp > hoek:
+        patched: '2020-03-20T03:30:45.158Z'
+    - letsencrypt-express > letsencrypt > le-acme-core > request > hawk > cryptiles > boom > hoek:
+        patched: '2020-03-20T03:30:45.158Z'
+    - redbird > letsencrypt > le-acme-core > request > hawk > cryptiles > boom > hoek:
+        patched: '2020-03-20T03:30:45.158Z'
   'npm:tunnel-agent:20170305':
     - redbird > node-etcd > request > tunnel-agent:
         patched: '2018-06-28T01:21:17.137Z'
+  'npm:extend:20180424':
+    - redbird > dolphin > request > extend:
+        patched: '2020-03-20T03:30:45.158Z'
+    - redbird > node-etcd > request > extend:
+        patched: '2020-03-20T03:30:45.158Z'
+    - letsencrypt-express > letsencrypt > le-acme-core > request > extend:
+        patched: '2020-03-20T03:30:45.158Z'
+    - redbird > letsencrypt > le-acme-core > request > extend:
+        patched: '2020-03-20T03:30:45.158Z'
+  'npm:stringstream:20180511':
+    - redbird > dolphin > request > stringstream:
+        patched: '2020-03-20T03:30:45.158Z'
+    - redbird > node-etcd > request > stringstream:
+        patched: '2020-03-20T03:30:45.158Z'
+    - letsencrypt-express > letsencrypt > le-acme-core > request > stringstream:
+        patched: '2020-03-20T03:30:45.158Z'
+    - redbird > letsencrypt > le-acme-core > request > stringstream:
+        patched: '2020-03-20T03:30:45.158Z'
