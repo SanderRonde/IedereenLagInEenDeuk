@@ -44,7 +44,7 @@ body {
 a {
 	position: relative;
 	text-decoration: underline;
-	color: white;
+	color: #313131;
 }
 
 a:focus {
