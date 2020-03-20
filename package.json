@@ -14,8 +14,9 @@
   },
   "homepage": "https://github.com/SanderRonde/IedereenLagInEenDeuk#readme",
   "devDependencies": {
-    "@types/express": "^4.0.35",
-    "@types/node": "^7.0.12",
+    "@types/compression": "^1.7.0",
+    "@types/express": "4.17.1",
+    "@types/serve-favicon": "^2.5.0",
     "grunt": "^1.0.1",
     "grunt-contrib-concat": "^1.0.1",
     "grunt-contrib-copy": "^1.0.0",
