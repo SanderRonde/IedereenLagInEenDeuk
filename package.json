@@ -31,5 +31,9 @@
     "express": "^4.17.1",
     "jade": "^1.11.0",
     "serve-favicon": "^2.5.0"
+  },
+  "scripts": {
+    "compile": "grunt compile",
+    "watch": "grunt watchCompile"
   }
 }
