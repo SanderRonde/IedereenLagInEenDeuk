@@ -17,14 +17,11 @@
     "@types/compression": "^1.7.0",
     "@types/express": "4.17.1",
     "@types/serve-favicon": "^2.5.0",
-    "grunt": "^1.0.1",
-    "grunt-contrib-concat": "^1.0.1",
-    "grunt-contrib-copy": "^1.0.0",
-    "grunt-contrib-cssmin": "^2.0.0",
-    "grunt-contrib-uglify": "^2.3.0",
-    "grunt-contrib-watch": "^1.0.0",
-    "grunt-exec": "^2.0.0",
+    "fs-extra": "^9.0.0",
+    "gulp": "^4.0.2",
+    "gulp-clean-css": "^4.3.0",
     "typescript": "^3.8.3",
+    "uglify-js": "^3.8.0",
     "watchify": "^3.9.0"
   },
   "dependencies": {
@@ -34,7 +31,8 @@
     "serve-favicon": "^2.5.0"
   },
   "scripts": {
-    "compile": "grunt compile",
-    "watch": "grunt watchCompile"
+    "compile-ts": "tsc -p app/server && tsc -p app/client && tsc -p app/client/src/js/sw",
+    "compile": "yarn compile-ts && yarn bundle",
+    "bundle": "gulp bundle"
   }
 }
