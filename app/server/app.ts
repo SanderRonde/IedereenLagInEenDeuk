@@ -1,11 +1,9 @@
-/// <reference path="../../typings/server.d.ts" />
-
-import express = require('express');
-import https = require('https');
-import path = require('path');
-import fs = require('fs');
-const favicon: (path: string) => express.RequestHandler = require('serve-favicon');
-const compression: (options?: any) => express.RequestHandler = require('compression');
+import * as compression from 'compression';
+import * as favicon from 'serve-favicon';
+import * as express from 'express';
+import * as https from 'https';
+import * as path from 'path';
+import * as fs from 'fs';
 
 const certs = {
 	key: fs.readFileSync('./certs/key.pem'),
@@ -106,8 +104,9 @@ const HTTP_PUSH_MAP: {
 	function renderPath(path: string, params: {
 		[key: string]: any;
 	} = {}): express.RequestHandler {
-		return async (req, res) => {
+		return async (_req: express.Request, res: express.Response) => {
 			const html = await wrapPromise(promisify(app.render, app, path, params)).catch((err) => {
+				res
 				res.writeHead(500);
 			});
 			if (html) {
