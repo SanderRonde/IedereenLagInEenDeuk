@@ -113,7 +113,6 @@ a:focus:before {
 
 .replayVideoContainer {
 	opacity: 0;
-	-ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
 	display: -webkit-box;	
 	display: -ms-flexbox;	
 	display: flex;
@@ -126,6 +125,8 @@ a:focus:before {
 	        justify-content: center;
 	background-color: rgba(0, 0, 0, 0.35);
 	-webkit-transition: opacity 250ms ease-in;
+	-moz-transition: opacity 250ms ease-in;
+	-o-transition: opacity 250ms ease-in;
 	transition: opacity 250ms ease-in;
 	pointer-events: none;
 	z-index: 10;
@@ -134,7 +135,6 @@ a:focus:before {
 .replayVideoContainer.visible {
 	pointer-events: all;
 	opacity: 1;
-	-ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=100)";
 	cursor: pointer;
 }
 
