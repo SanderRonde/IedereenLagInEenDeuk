@@ -92,7 +92,6 @@ const HTTP_PUSH_MAP: {
 	});
 	app.use(favicon(path.join(__dirname, '../client/public/favicon.ico')));
 	app.use(compression());
-	//app.use('/', le.middleware());
 	app.use(express.static(
 		path.join(
 			__dirname, '../client/public'
@@ -101,11 +100,9 @@ const HTTP_PUSH_MAP: {
 		}
 	));
 
-	function renderPath(path: string, params: {
-		[key: string]: any;
-	} = {}): express.RequestHandler {
+	function renderPath(path: string): express.RequestHandler {
 		return async (_req: express.Request, res: express.Response) => {
-			const html = await wrapPromise(promisify(app.render, app, path, params)).catch((err) => {
+			const html = await wrapPromise(promisify(app.render, app, path)).catch((err) => {
 				res
 				res.writeHead(500);
 			});
@@ -122,12 +119,9 @@ const HTTP_PUSH_MAP: {
 	}
 
 	app.get('/', renderPath('index'));
-	app.get('/cached', renderPath('index', {
-		offline: true
-	}));
 	app.get('/404', renderPath('404'));
 
-	app.use(async (req, res, next) => {
+	app.use(async (req, res) => {
 		res.status(404);
 
 		if (req.accepts('html')) {

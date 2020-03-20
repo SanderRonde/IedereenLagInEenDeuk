@@ -38,12 +38,8 @@ html(lang="nl", prefix="og: http://ogp.me/ns#")
         meta(name="twitter:description", content="Ik had helemaal geen bingo")
         meta(name="twitter:image", content="https://www.iedereenlagineendeuk.nl/about/images/192.png")
 
-        if offline == true
-            style
-                include './../../../client/public/css/main_cached.css
-        else
-            style
-                include './../../../client/public/css/main.css
+        style
+            include './../../../client/public/css/main.css
 
     body
         div#networkStatus(class='hidden')

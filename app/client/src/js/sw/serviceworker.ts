@@ -8,7 +8,7 @@ toolbox.options.cache.maxEntries = 500;
 toolbox.options.cache.maxAgeSeconds = 60 * 60 * 24 * (365.25 / 12);
 
 const toCache = ['/js/main.js']
-	.concat('/', '/404', '/cached')
+	.concat('/', '/404')
 	.concat('/fonts/Roboto-Regular.ttf', '/resources/vid.mp4')
 	.concat('/about/manifest.json', '/about/images/48.png',
 		'/about/images/72.png', '/about/images/96.png',
@@ -49,7 +49,7 @@ self.addEventListener('install', async (event) => {
 		
 		toolbox.router.any('/', (req) => {
 			return new Promise((resolve) => {
-				return getFromCache(navigator.onLine ? '/' : '/cached')(req, {}).then(async (res) => {
+				return getFromCache('/')(req, {}).then(async (res) => {
 					if (!navigator.onLine) {
 						setTimeout(() => {
 							sendMessageToPage({
