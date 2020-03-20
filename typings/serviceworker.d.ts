@@ -29,10 +29,7 @@ interface ServiceWorkerNotificationOptions {
 
 interface NotificationOptions {
 	renotify?: boolean;
-	actions?: Array<{
-		action?: string;
-		title?: string;
-	}>;
+	actions?: NotificationAction[];
 }
 
 interface ServiceWorkerRegistration {
